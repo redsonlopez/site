@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aprendizado de Máquina</title>
+	<link rel="stylesheet" href="../assets/css/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+	    onload="renderMathInElement(document.body);"></script>
+    </head>
+    <body>
+	<main id="ml">
+	    
+	    <section>
+		<details>
+		    <summary>Limpeza de Dados</summary>
+		    <h3>Dados faltantes</h3>
+		    <p>
+		    <b>...</b><br>
+		    ...
+		    </p>
+		    <h3>...</h3>
+		    <p>
+		    <b>...</b><br>
+		    dados duplicados, Inconsistências
+		    </p>
+		</details>
+	    </section>
+
+	    <section>
+		<h2>Análise exploratória de Dados</h2>
+
+		<h3>Análise de Outliers</h3>
+		<p>
+		<b>...</b><br>
+		analisar se remove, transforma ou mantém<br>
+		</p>
+
+		<h3>Teste de normalidade das variáveis</h3>
+		<p>
+		<b>Shapiro-Wilk:</b>
+		\[
+		W = \frac{\left( \sum_{i=1}^{n} a_i \, x_{(i)} \right)^2}
+		{\sum_{i=1}^{n} \left( x_i - \bar{x} \right)^2}
+		\]
+		Importante para escolher tipo de correlação
+		</p>
+
+		<h3>Correlação das Variáveis</h3>
+		<p>
+		<b>Coeficiente de Pearson:</b>
+		\[
+		r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}
+		{\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2} \cdot \sqrt{\sum_{i=1}^{n}(y_i - \bar{y})^2}}
+		\]
+		Mede a <i>força</i> e a <i>direção</i> da relação linear<br>
+		entre duas variáveis quantitativas.<br>
+		Ele assume que as variáveis têm uma distribuição normal.<br>
+		Pearson é utilizado quando as variáveis têm uma relação linear<br>
+		e ambas seguem uma <i>distribuição normal</i>.<br>
+		Onde \( r \) varia entre -1 e 1:<br>
+		- \( r = 1 \): Correlação positiva perfeita<br>
+		- \( r = -1 \): Correlação negativa perfeita<br>
+		- \( r = 0 \): Sem correlação linear<br>
+		</p>
+		<p>
+		<b>Coeficiente de Spearman:</b>
+		\[
+		\rho = 1 - \frac{6 \sum_{i=1}^{n} d_i^2}{n \left( n^2 - 1 \right)}
+		\]
+		Mede a relação <i>monotônica</i> entre duas variáveis,<br>
+		o que significa que, à medida que uma variável aumenta,<br>
+		a outra também aumenta ou diminui, mas não necessariamente de forma linear.<br>
+		- <i>Quando usar</i>: Use Spearman quando os dados não forem normalmente distribuídos<br>
+		ou se a relação entre as variáveis for <i>monotônica</b> (não linear).<br>
+		- Baseia-se no ranking das variáveis.<br>
+		</p>
+		<p>
+		<b>Coeficiente de Kendall</b>
+		\[
+		\tau = \frac{C - D}{\frac{1}{2}n(n-1)}
+		\]
+		Outra medida não paramétrica que mede a associação entre duas variáveis.<br>
+		Ele leva em consideração a concordância entre pares de observações.<br>
+		Onde C = número de pares concorrentes e D = número de pares discordantes.<br>
+		- <i>Quando usar</i>: Utilize Kendall quando o número de dados é pequeno,<br>
+		ou quando há muitos empates nos dados.<br>
+		- Baseia-se na concordância e discordância de pares ordenados.<br>
+		</p>
+
+		<h3>Multicolinearidade:</h3>
+		<p>
+		<b>VIF</b><br>
+		...
+		</p>
+		<p>
+		<b>Matriz de Correlação</b><br>
+		...
+		</p>
+	    </section>
+
+	    <section>
+		<h2>Transformação das variáveis</h2>
+
+		<h3>Codificação de variáveis categóricas</h3>
+		<p>
+		<b>Label Encoding</b><br>
+		quando há ordem (Ex: Ensino Fundamental = 1, Médio = 2, Superior = 3)
+		</p>
+		<p>
+		<b>One Hot Encoding</b><br>
+		quando não há ordem (Ex: Cores: vermelho, azul, verde)
+		</p>
+		<p>
+		<b>Normalização (Min-Max)</b><br>
+		para algoritmos que dependem de escala [0,1]
+		</p>
+		<p>
+		<b>Padronização (Z-score)</b><br>
+		para algoritmos que assumem média 0 e desvio 1 (ex: regressão, PCA, SVM)
+	    </section>
+
+	    <section>
+		<h2>Seleção de variáveis</h2>
+
+		<h3>...</h3>
+		<p>
+		<b>Stepwise</b><br>
+		inclusão/remoção iterativa de variáveis pelo p-valor
+		</p>
+		<p>
+		<b>Lasso (L1)</b><br>
+		regularização que força alguns coeficientes a zero.<br>
+		Usar <b>Cross Validation</b> para achar o <b>λ (lambda) ótimo</b>
+		</p>
+	    </section>
+
+	    <section>
+		<h2>Construção Inicial do Modelo</h2>
+
+		<h3>...</h3>
+		<p>
+		<b>...</b><br>
+		Definir variáveis dependente e independentes<br>
+		Separação de dados para Treino (~ 60% a 80%),<br>
+		Validação (~ 10% a 20%) e Teste (~ 10% a 20% dos dados)<br>
+		Conjunto de dados pequenos (até alguns milhares de amostras) 60/20/20<br>
+		Conjuntos grandes (dezenas de milhares a milhões de amostras) 80/10/10<br>
+		Conjuntos de dados gigantes (milhões a bilhões de amostras) 98/01/01<br>
+    		<b>Sempre embaralhe os dados:</b><br>
+		Antes de fazer a divisão, é crucial embaralhar (randomizar)<br>
+		todo o conjunto de dados. Isso garante que a distribuição das classes (rótulos)<br>
+		seja a mesma nos três conjuntos, evitando que um conjunto contenha apenas um tipo de dado,<br>
+		o que poderia enviesar o treinamento e a avaliação.<br>
+		<b>A divisão deve ser aleatória, mas estratificada:</b><br>
+		Se você estiver trabalhando com dados desequilibrados<br>
+		(por exemplo, 90% de uma classe e 10% de outra),<br>
+		use a divisão estratificada (stratified split).<br>
+		Isso garante que a proporção de cada classe seja mantida nos conjuntos de treino, validação e teste.<br>
+    		A divisão 70/15/15 ou 80/10/10 é um bom ponto de partida:<br>
+		Se você não tem certeza, comece com uma dessas divisões e ajuste conforme necessário,<br>
+		dependendo do tamanho e da natureza dos seus dados.<br>
+		Ajustar o modelo (regressão linear, logística, etc)<br>
+		</p>
+	    </section>
+
+	    <section>
+		<h2>Avaliação dos pressupostos do modelo</h2>
+
+		<h3>...</h3>
+		<p>
+		<b>Normalidade dos resíduos:</b><br>
+		...<br>
+		</p>
+		<p>
+		<b>Homocedasticidade dos resíduos (Breusch-Pagan):</b><br>
+		Se o p-valor do teste menor que 0.05,<br>
+		indica a presença de heterocedasticidade<br>
+		e pode ser necessário ajustar o modelo<br>
+		ou usar métodos robustos para estimativa de variância.<br>
+		</p>
+		<p>
+		<b>Independência dos resíduos (Durbin-Watson)</b>
+		...
+		</p>
+	    </section>
+
+	    <section>
+		<h2>Testes estatísticos</h2>
+
+		<h3>...</h3>
+		<p>
+		<b>Teste T:</b>
+		\[
+		t = \frac{r}{\sigma_r}
+		\]
+		O Teste T avalia a significância estatística de cada coeficiente no modelo.<br>
+		Um p-valor baixo indica que o coeficiente é significativo.<br>
+		</p>
+		<p>
+		<b>Teste F:</b><br>
+		O Teste F avalia a significância global do modelo.<br>
+		Um p-valor baixo sugere que o modelo, como um todo, é significativo.<br>
+		</p>
+	    </section>
+
+	    <section>
+		<h2>Avaliação da qualidade do ajuste</h2>
+
+		<h3>...</h3>
+		<p>
+		<b>Coeficiente de determinação (R²):</b><br>
+		Mede a proporção da variável dependente explicada pelo modelo,<br>
+		ajustada pelo número de preditores.<br>
+		</p>
+		<p>
+		<b>Critério de Informação de Akaike - AIC:</b><br>
+		O objetivo e selecionar o modelo com o menor ACI,<br>
+		pois ele equilibra eficazmente a precisão do ajuste<br>
+		e a parcimônia do modelo.<br>
+		No entanto, o ACI não fornece uma medida absoluta de ajuste,<br>
+		apenas comparações relativas entre modelos.<br>
+		</p>
+		<p>
+		<b>Critério de Informação Bayesiano - BIC:</b><br>
+		O BIC tende a favorecer modelos mais simples do que o AIC,<br>
+		especialmente quando o tamanho da amostra é pequeno.<br>
+		Portanto, o BIC é uma escolha apropriada quando se deseja evitar<br>
+		a inclusão de variáveis desnecessárias e manter um modelo mais parcimonioso.<br>
+		</p>
+		<p>
+		<b>MAE - Erro médio Absoluto:</b><br>
+		Quanto menor o MAE, melhor o ajuste do modelo.<br>
+		\[
+		MAE = \frac{1}{n} \sum_{i=1}^{n} \left| y_i - \hat{y}_i \right|
+		\]
+		</p>
+		<p>
+		<b>MSE - Erro médio Quadrático:</b><br>
+		O MSE penalisa erros maiores mais fortemente do que erros menores,<br>
+		devido a natureza dos quadrados.<br>
+		Assim como o MAE, quanto menor o valor do MSE, melhor o ajuste do modelo.<br>
+		\[
+		MSE = \frac{1}{n} \sum_{i=1}^{n} \left( y_i - \hat{y}_i \right)^2
+		\]
+		</p>
+	    </section>
+
+	    <section>
+		<h2>Validação do modelo</h2>
+
+		<h3>...</h3>
+		<p>
+		<b>Treino/Teste ou Cross Validation</b><br>
+		</p>
+		<p>
+		<b>underfitting:</b><br>
+		modelo simples demais<br>
+		</p>
+		<p>
+		<b>overfitting:</b><br>
+		complexo demais<br>
+		</p>
+	    </section>
+
+	    <section>
+		<h2>Comparação de Modelos</h2>
+
+		<h3>...</h3>
+		<p>
+		<b>Modelo parcimonioso:</b><br>
+		É aquele que melhor explica o fenômeno que estamos estudando<br>
+		da forma <mark>mais simples possível</mark>, menor número de parâmetros.<br>
+		</p>
+	    </section>
+
+	    <section>
+		<progress id="progress" max="100" min="0" value="0"></progress>
+	    </section>
+
+	    <script>
+		var progress = document.getElementById("progress");
+		const interval = setInterval(() => {
+		    progress.value += 10;
+		    if (progress.value >= 100)
+			clearInterval(interval);
+		}, 1000);
+	    </script>
+
+	</main>
+    </body>
+</html>
