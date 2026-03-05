@@ -6,5 +6,5 @@ Visualize o site pelo link:
 https://redsonlopez.github.io/site/
 
 
-Construída com **HTML**, **CSS** e **JavaScript**.
+Construído com **HTML**, **CSS** e **JavaScript**.
 
