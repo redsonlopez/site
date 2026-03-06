@@ -6,10 +6,6 @@
 
 <link rel="stylesheet" href="../../assets/css/style.css">
 
-<script src="../../components/site-header.js" defer></script>
-<script src="../../components/site-navbar.js" defer></script>
-<script src="../../components/site-footer.js" defer></script>
-
 <title>Regressão Linear Simples</title>
 
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -18,9 +14,8 @@
 
 <body>
 
-<site-header></site-header>
 
-<main class="container">
+<main id="ml">
 
 <h2>Regressão Linear Simples</h2>
 
@@ -46,24 +41,22 @@
 
 <p>Desejamos ajustar um modelo de regressão linear simples da forma:</p>
 
-<p>\(
+<p class="equation">\(
 y = \beta_0 + \beta_1 x
 \)</p>
 
 <p>onde:</p>
 
-<ul>
-<li>\(\beta_0\) é o intercepto</li>
-<li>\(\beta_1\) é o coeficiente angular</li>
-</ul>
+<p class="equation">\(\beta_0\) é o intercepto</p>
+<p class="equation">\(\beta_1\) é o coeficiente angular</p>
 
 <h3>2º - Cálculo das Médias</h3>
 
-<p>\(
+<p class="equation">\(
 \bar{x} = \frac{1+2+3+4+5}{5} = 3
 \)</p>
 
-<p>\(
+<p class="equation">\(
 \bar{y} = \frac{2+3+5+4+6}{5} = 4
 \)</p>
 
@@ -71,7 +64,7 @@ y = \beta_0 + \beta_1 x
 
 <p>O estimador de mínimos quadrados para \(\beta_1\) é:</p>
 
-<p>\(
+<p class="equation">\(
 \beta_1 =
 \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}
 {\sum (x_i - \bar{x})^2}
@@ -101,37 +94,37 @@ y = \beta_0 + \beta_1 x
 
 <p>Somatórios:</p>
 
-<p>\(
+<p class="equation">\(
 \sum (x_i - \bar{x})(y_i - \bar{y}) = 4 + 1 + 0 + 0 + 4 = 9
 \)</p>
 
-<p>\(
+<p class="equation">\(
 \sum (x_i - \bar{x})^2 = 4 + 1 + 0 + 1 + 4 = 10
 \)</p>
 
 <p>Logo,</p>
 
-<p>\(
+<p class="equation">\(
 \beta_1 = \frac{9}{10} = 0.9
 \)</p>
 
 <h3>4º - Cálculo do Intercepto</h3>
 
-<p>\(
+<p class="equation">\(
 \beta_0 = \bar{y} - \beta_1 \bar{x}
 \)</p>
 
-<p>\(
+<p class="equation">\(
 \beta_0 = 4 - (0.9)(3)
 \)</p>
 
-<p>\(
+<p class="equation">\(
 \beta_0 = 4 - 2.7 = 1.3
 \)</p>
 
 <h3>5º - Modelo Final</h3>
 
-<p>\(
+<p class="equation">\(
 \hat{y} = 1.3 + 0.9x
 \)</p>
 
@@ -142,7 +135,6 @@ y = \beta_0 + \beta_1 x
 
 </main>
 
-<site-footer></site-footer>
 
 </body>
 </html>
