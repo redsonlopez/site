@@ -59,6 +59,14 @@ button, input, textarea {
   margin-left: 25px;
 }
 
+pre {
+  font-size: 15px;
+  padding: 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
 table {
   border-collapse: collapse;
   margin: 20px 0px 0px 100px;
