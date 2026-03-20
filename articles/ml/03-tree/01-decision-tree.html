@@ -20,7 +20,7 @@
 
 <h3>1º - O Problema: Aprovar ou Reprovar</h3>
 
-<p>Considere o seguinte conjunto de dados:</p>
+<p>Considere o seguinte conjunto de dados de 5 alunos:</p>
 
 <table>
 <thead>
@@ -43,21 +43,19 @@
 
 <h3>2º - Ideia da Árvore de Decisão</h3>
 
-<p>A árvore de decisão funciona como uma sequência de perguntas:</p>
+<p>A árvore funciona como um fluxograma de perguntas:</p>
 
 <ul>
-<li>Cada pergunta é um <strong>nó</strong></li>
-<li>Cada resposta gera um <strong>ramo</strong></li>
-<li>O resultado final é uma <strong>folha</strong> (classe, que do nosso exemplo 'Sim' ou 'Não' para aluno aprovado)</li>
+<li><strong>Nó:</strong> A pergunta (ex: Horas de estudo ≥ 3?).</li>
+<li><strong>Ramo:</strong> A resposta (Sim ou Não).</li>
+<li><strong>Folha:</strong> A previsão final (Aprovado ou Reprovar).</li>
 </ul>
-
-<p>Exemplo de pergunta:</p>
-
-<p class="equation"><strong>Horas de estudo ≥ 3?</strong></p>
 
 <h3>3º - Como Escolher a Melhor Pergunta?</h3>
 
-<p>Usamos uma métrica chamada <strong>Impureza de Gini</strong>:</p>
+<p>Usamos a <strong>Impureza de Gini</strong>.<br>
+Ela mede o quão "misturados" estão os dados em um grupo.<br>
+Se o Gini é 0, o grupo é puro (todos são da mesma classe).</p>
 
 <p class="equation">\(
 Gini = 1 - \sum p_i^2
@@ -67,12 +65,7 @@ Gini = 1 - \sum p_i^2
 
 <h3>4º - Cálculo da Impureza Inicial</h3>
 
-<p>No conjunto completo:</p>
-
-<ul>
-<li>3 alunos: Não</li>
-<li>2 alunos: Sim</li>
-</ul>
+<p>Antes de qualquer divisão, temos 3 "Não" e 2 "Sim":</p>
 
 <p class="equation">\(
 p_{Não} = \frac{3}{5}, \quad p_{Sim} = \frac{2}{5}
@@ -88,74 +81,46 @@ Gini = 1 - (0.36 + 0.16) = 0.48
 
 <h3>5º - Testando um Corte: Horas ≥ 3</h3>
 
-<h4>Grupo 1: Horas ≥ 3</h4>
+<h4>Grupo 1: Horas ≥ 3 (Sim)</h4>
+<p>Contém 2 alunos, ambos "Sim". Logo, é um grupo puro: <strong>Gini = 0</strong>.</p>
 
-<table>
-<tr><td>3</td><td>2</td><td>Sim</td></tr>
-<tr><td>4</td><td>1</td><td>Sim</td></tr>
-</table>
-
-<p>Todos são "Sim":</p>
-
-<p class="equation">\(
-Gini = 0
-\)</p>
-
-<h4>Grupo 2: Horas < 3</h4>
-
-<table>
-<tr><td>2</td><td>5</td><td>Não</td></tr>
-<tr><td>1</td><td>6</td><td>Não</td></tr>
-<tr><td>2</td><td>4</td><td>Não</td></tr>
-</table>
-
-<p>Todos são "Não":</p>
-
-<p class="equation">\(
-Gini = 0
-\)</p>
+<h4>Grupo 2: Horas < 3 (Não)</h4>
+<p>Contém 3 alunos, todos "Não". Logo, também é puro: <strong>Gini = 0</strong>.</p>
 
 <h3>6º - Impureza Após o Corte</h3>
 
-<p>Como ambos os grupos são puros:</p>
+<p>Para saber se o corte foi bom, calculamos a impureza final ponderada pelo tamanho de cada grupo:</p>
 
-<p class="equation">\(
-Gini_{final} = 0
-\)</p>
+<p class="equation">
+\( Gini_{final} = \left(\frac{2}{5} \times 0\right) + \left(\frac{3}{5} \times 0\right) = \mathbf{0} \)
+</p>
 
-<p>Esse é um corte perfeito.</p>
+<p>Como a impureza caiu de <strong>0.48</strong> para <strong>0</strong>, tivemos um <strong>Ganho de Informação</strong> máximo!</p>
 
 <h3>7º - Construção da Árvore</h3>
 
-<p>A árvore resultante pode ser representada assim:</p>
+<p>A representação visual da lógica aprendida pelo modelo:</p>
 
 <pre>
-            [Horas ≥ 3]
-              /      \
-           Não        Sim
-          /            \
-     Reprovado      Aprovado
+          [Horas ≥ 3?]
+            /      \
+        Sim          Não
+       /              \
+ [Aprovado]       [Reprovado]
 </pre>
 
-<p>Ou seja:</p>
-
-<ul>
-<li><strong>Se Horas ≥ 3 → Aprovado</strong></li>
-<li><strong>Se Horas < 3 → Reprovado</strong></li>
-</ul>
-
-<p>Um exemplo de como poderia ficar com multiplos níveis:</p>
+<p>Se o problema fosse mais complexo, a árvore continuaria fazendo perguntas nos ramos impuros:</p>
 
 <pre>
-                [Horas ≥ 3]
-                  /      \
-               Não        Sim
-              /            \
-     [Faltas ≤ 2]       Aprovado
-         /      \
-      Não        Sim
-       /          \
-    Reprovado    Aprovado
+          [Horas ≥ 3?]
+            /      \
+        Sim          Não
+       /              \
+ [Aprovado]       [Faltas ≤ 2?]
+                    /      \
+                Sim          Não
+               /              \
+         [Aprovado]       [Reprovado]
 </pre>
 
 <h3>8º - Interpretação</h3>
@@ -177,14 +142,7 @@ Gini_{final} = 0
 
 <h3>10º - Conclusão</h3>
 
-<p>
-Árvores de decisão funcionam criando regras simples baseadas nos dados.
-O modelo tenta dividir o conjunto de forma que cada grupo fique o mais puro possível.
-</p>
-
-<p>
-Essa ideia é a base de algoritmos mais avançados como Random Forest e Gradient Boosting.
-</p>
+<p>O modelo busca automaticamente os cortes que mais reduzem a impureza. Essa simplicidade torna a Árvore de Decisão um dos modelos mais explicáveis em Machine Learning, servindo de base para algoritmos poderosos como <strong>Random Forest</strong>.</p>
 
 </main>
 
