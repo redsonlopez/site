@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../../../assets/css/style.css">
+
+<title>Overfitting e Underfitting</title>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+<main>
+
+<h2>Overfitting e Underfitting</h2>
+
+<h3>1º - O Problema: Ajustar Bem os Dados</h3>
+
+<p>Ao treinar um modelo de Machine Learning, queremos que ele aprenda padrões reais dos dados.</p>
+
+<p>Mas existem dois problemas comuns:</p>
+
+<ul>
+<li><strong>Underfitting:</strong> o modelo é simples demais</li>
+<li><strong>Overfitting:</strong> o modelo é complexo demais</li>
+</ul>
+
+<p>O desafio é encontrar um equilíbrio entre esses dois extremos.</p>
+
+<h3>2º - Exemplo Intuitivo</h3>
+
+<p>Considere um conjunto de pontos que seguem uma tendência:</p>
+
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>2</td></tr>
+<tr><td>2</td><td>4</td></tr>
+<tr><td>3</td><td>5</td></tr>
+<tr><td>4</td><td>4</td></tr>
+<tr><td>5</td><td>5</td></tr>
+</tbody>
+</table>
+
+<p>Agora vamos tentar ajustar modelos diferentes.</p>
+
+<h3>3º - Underfitting</h3>
+
+<p>Um modelo muito simples pode não capturar o padrão dos dados.</p>
+
+<p>Exemplo: uma linha horizontal tentando ajustar os pontos.</p>
+
+<pre>
+y = 3
+</pre>
+
+<p>Problemas:</p>
+
+<ul>
+<li>Erro alto nos dados de treino</li>
+<li>Não aprende a relação entre x e y</li>
+</ul>
+
+<p><strong>Conclusão:</strong> o modelo não é capaz de representar o problema.</p>
+
+<h3>4º - Overfitting</h3>
+
+<p>Um modelo muito complexo pode se ajustar perfeitamente aos dados de treino.</p>
+
+<p>Exemplo: um polinômio de grau muito alto passando por todos os pontos.</p>
+
+<pre>
+y = ax^4 + bx^3 + cx^2 + dx + e
+</pre>
+
+<p>Problemas:</p>
+
+<ul>
+<li>Erro praticamente zero no treino</li>
+<li>Captura ruído (variações aleatórias ou erros nos dados) em vez de padrão</li>
+<li>Péssimo desempenho em novos dados</li>
+</ul>
+
+<p><strong>Conclusão:</strong> o modelo "decora" os dados.</p>
+
+<h3>5º - Bom Ajuste (Equilíbrio)</h3>
+
+<p>O ideal é um modelo que capture a tendência geral sem exagerar na complexidade.</p>
+
+<pre>
+y = ax + b
+</pre>
+
+<p>Características:</p>
+
+<ul>
+<li>Erro baixo (mas não zero) no treino</li>
+<li>Boa capacidade de generalização</li>
+</ul>
+
+<h3>6º - Relação com o Risco Empírico</h3>
+
+<p>O overfitting ocorre quando minimizamos demais o risco empírico:</p>
+
+<p class="equation">\(
+R_{emp} = \frac{1}{n} \sum L(y_i, \hat{y}_i)
+\)</p>
+
+<p>Isso pode fazer o modelo se ajustar até ao ruído dos dados.</p>
+
+<h3>7º - Generalização</h3>
+
+<p>O objetivo real não é apenas ir bem no treino, mas em dados novos.</p>
+
+<p>Chamamos isso de <strong>capacidade de generalização</strong>.</p>
+
+<ul>
+<li><strong>Underfitting:</strong> ruim no treino e no teste</li>
+<li><strong>Overfitting:</strong> bom no treino, ruim no teste</li>
+<li><strong>Equilíbrio:</strong> bom em ambos</li>
+</ul>
+
+<h3>8º - Como Identificar</h3>
+
+<p>Comparando erro de treino e teste:</p>
+
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Erro Treino</th>
+<th>Erro Teste</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Underfitting</td><td>Alto</td><td>Alto</td></tr>
+<tr><td>Overfitting</td><td>Baixo</td><td>Alto</td></tr>
+<tr><td>Bom ajuste</td><td>Baixo</td><td>Baixo</td></tr>
+</tbody>
+</table>
+
+<h3>9º - Como Evitar</h3>
+
+<ul>
+<li><strong>Underfitting:</strong>
+  <ul>
+    <li>Aumentar a complexidade do modelo</li>
+    <li>Adicionar mais variáveis</li>
+  </ul>
+</li>
+
+<li><strong>Overfitting:</strong>
+  <ul>
+    <li>Usar mais dados</li>
+    <li>Aplicar regularização</li>
+    <li>Reduzir complexidade do modelo</li>
+  </ul>
+</li>
+</ul>
+
+<h3>10º - Conclusão</h3>
+
+<p>Overfitting e underfitting são dois lados do mesmo problema: o ajuste do modelo.</p>
+
+<p>O objetivo do Machine Learning é encontrar um modelo que capture padrões reais,<br>
+mantendo um bom equilíbrio entre aprendizado e generalização.</p>
+
+</main>
+
+</body>
+</html>
+

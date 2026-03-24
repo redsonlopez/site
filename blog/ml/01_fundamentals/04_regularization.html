@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../../../assets/css/style.css">
+
+<title>Regularização</title>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+<main>
+
+<h2>Regularização (Regularization)</h2>
+
+<h3>1º - O Problema: Overfitting</h3>
+
+<p>Ao treinar um modelo, é comum obter um ajuste muito bom nos dados de treino.</p>
+
+<p>Porém, isso pode levar a um problema:</p>
+
+<p><strong>O modelo aprende demais os dados e perde capacidade de generalização.</strong></p>
+
+<p>Esse fenômeno é chamado de <strong>overfitting</strong>.</p>
+
+<h3>2º - Exemplo Intuitivo</h3>
+
+<p>Considere um conjunto de pontos:</p>
+
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>2</td></tr>
+<tr><td>2</td><td>3</td></tr>
+<tr><td>3</td><td>5</td></tr>
+<tr><td>4</td><td>4</td></tr>
+<tr><td>5</td><td>6</td></tr>
+</tbody>
+</table>
+
+<p>Um modelo simples (reta) pode capturar a tendência geral.</p>
+
+<p>Já um modelo muito complexo pode passar exatamente por todos os pontos,<br>
+criando uma curva irregular.</p>
+
+<h3>3º - Problema da Complexidade</h3>
+
+<ul>
+<li>Modelos simples → podem errar por serem limitados (<strong>underfitting</strong>)</li>
+<li>Modelos complexos → podem "decorar" os dados (<strong>overfitting</strong>)</li>
+</ul>
+
+<p>Precisamos de um equilíbrio entre ajuste e simplicidade.</p>
+
+<h3>4º - Ideia da Regularização</h3>
+
+<p>A regularização adiciona uma penalização ao modelo para evitar soluções muito complexas.</p>
+
+<p>Em vez de minimizar apenas o erro:</p>
+
+<p class="equation">\(
+R_{emp}
+\)</p>
+
+<p>Passamos a minimizar:</p>
+
+<p class="equation">\(
+R_{emp} + \lambda \cdot \Omega(\theta)
+\)</p>
+
+<ul>
+<li>\(R_{emp}\): erro nos dados</li>
+<li>\(\Omega(\theta)\): penalização dos parâmetros</li>
+<li>\(\lambda\): controla a intensidade da penalização</li>
+</ul>
+
+<h3>5º - Regularização L2 (Ridge)</h3>
+
+<p>Penaliza o quadrado dos parâmetros:</p>
+
+<p class="equation">\(
+\Omega(\theta) = \sum \theta_i^2
+\)</p>
+
+<p>Função objetivo:</p>
+
+<p class="equation">\(
+R_{emp} + \lambda \sum \theta_i^2
+\)</p>
+
+<ul>
+<li>Reduz valores grandes dos coeficientes</li>
+<li>Distribui o peso entre variáveis</li>
+</ul>
+
+<h3>6º - Regularização L1 (Lasso)</h3>
+
+<p>Penaliza o valor absoluto dos parâmetros:</p>
+
+<p class="equation">\(
+\Omega(\theta) = \sum |\theta_i|
+\)</p>
+
+<p>Função objetivo:</p>
+
+<p class="equation">\(
+R_{emp} + \lambda \sum |\theta_i|
+\)</p>
+
+<ul>
+<li>Pode zerar coeficientes</li>
+<li>Realiza seleção de variáveis automaticamente</li>
+</ul>
+
+<h3>7º - Comparação L1 vs L2</h3>
+
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>L1 (Lasso)</td><td>Zera coeficientes</td></tr>
+<tr><td>L2 (Ridge)</td><td>Reduz coeficientes</td></tr>
+</tbody>
+</table>
+
+<h3>8º - Papel do \(\lambda\)</h3>
+
+<ul>
+<li>\(\lambda = 0\): sem regularização</li>
+<li>\(\lambda\) pequeno: leve penalização</li>
+<li>\(\lambda\) grande: modelo mais simples</li>
+</ul>
+
+<p>Escolher \(\lambda\) corretamente é fundamental.</p>
+
+<h3>9º - Interpretação</h3>
+
+<ul>
+<li>Regularização controla a complexidade do modelo</li>
+<li>Ajuda a evitar overfitting</li>
+<li>Melhora a generalização</li>
+</ul>
+
+<h3>10º - Conclusão</h3>
+
+<p>A regularização equilibra ajuste e simplicidade.<br>
+Ela é um dos principais mecanismos para tornar modelos mais robustos,<br>
+sendo amplamente utilizada em regressão, redes neurais e outros algoritmos.</p>
+
+</main>
+
+</body>
+</html>
+

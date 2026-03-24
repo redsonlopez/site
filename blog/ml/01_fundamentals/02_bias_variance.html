@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../../../assets/css/style.css">
+
+<title>Bias vs Variance</title>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+<main>
+
+<h2>Bias vs Variance</h2>
+
+<h3>1º - Por que o modelo erra?</h3>
+
+<p>Ao treinar um modelo, é comum observar erros nas previsões.</p>
+
+<p>Esses erros geralmente vêm de duas fontes principais:</p>
+
+<ul>
+<li><strong>Bias (Viés)</strong></li>
+<li><strong>Variance (Variância)</strong></li>
+</ul>
+
+<p>Entender esse trade-off é essencial para construir bons modelos.</p>
+
+<h3>2º - Intuição: Ajuste do Modelo</h3>
+
+<p>Considere um conjunto de dados com uma relação não linear:</p>
+
+<ul>
+<li>Um modelo muito simples pode não capturar o padrão.</li>
+<li>Um modelo muito complexo pode se ajustar demais aos dados.</li>
+</ul>
+
+<p>Isso leva a dois problemas clássicos:</p>
+
+<ul>
+<li><strong>Underfitting</strong> (modelo simples demais)</li>
+<li><strong>Overfitting</strong> (modelo complexo demais)</li>
+</ul>
+
+<h3>3º - Bias (Viés)</h3>
+
+<p>O <strong>bias</strong> mede o erro causado por suposições simplificadoras do modelo.</p>
+
+<p>Modelos com alto bias:</p>
+
+<ul>
+<li>São simples</li>
+<li>Não capturam bem o padrão dos dados</li>
+<li>Têm erro alto tanto no treino quanto no teste</li>
+</ul>
+
+<p>Exemplo: ajustar uma linha reta para dados claramente curvos.</p>
+
+<h3>4º - Variance (Variância)</h3>
+
+<p>A <strong>variance</strong> mede o quanto o modelo varia com pequenas mudanças nos dados.</p>
+
+<p>Modelos com alta variância:</p>
+
+<ul>
+<li>São complexos</li>
+<li>Se ajustam muito ao conjunto de treino</li>
+<li>Têm erro baixo no treino, mas alto no teste</li>
+</ul>
+
+<p>Exemplo: uma curva muito irregular que passa por todos os pontos.</p>
+
+<h3>5º - Decomposição do Erro</h3>
+
+<p>O erro total pode ser decomposto da seguinte forma:</p>
+
+<p class="equation">\(
+Erro = Bias^2 + Variance + Ruído
+\)</p>
+
+<ul>
+<li><strong>Bias²:</strong> erro sistemático</li>
+<li><strong>Variance:</strong> sensibilidade aos dados</li>
+<li><strong>Ruído:</strong> erro irreduzível</li>
+</ul>
+
+<h3>6º - Exemplo Visual (Intuitivo)</h3>
+
+<pre>
+Underfitting (alto bias):
+
+   dados reais:   ~~~~
+   modelo:        ----
+
+Boa generalização:
+
+   dados reais:   ~~~~
+   modelo:        ~~~~
+
+Overfitting (alta variância):
+
+   dados reais:   ~~~~
+   modelo:        ~-~-~-~
+</pre>
+
+<h3>7º - Trade-off Bias vs Variance</h3>
+
+<p>Existe um equilíbrio entre bias e variância:</p>
+
+<ul>
+<li>Diminuir o bias geralmente aumenta a variância</li>
+<li>Diminuir a variância geralmente aumenta o bias</li>
+</ul>
+
+<p>O objetivo é encontrar um ponto intermediário.</p>
+
+<h3>8º - Relação com Risco Empírico</h3>
+
+<p>Minimizar apenas o risco empírico pode levar a overfitting.</p>
+
+<p>Modelos muito complexos reduzem o erro no treino, mas aumentam a variância.</p>
+
+<p>Por isso, precisamos controlar a complexidade do modelo.</p>
+
+<h3>9º - Como Controlar</h3>
+
+<ul>
+<li><strong>Regularização:</strong> penaliza modelos complexos</li>
+<li><strong>Mais dados:</strong> reduz variância</li>
+<li><strong>Validação cruzada:</strong> ajuda na escolha do modelo</li>
+<li><strong>Escolha do modelo:</strong> ajustar complexidade adequada</li>
+</ul>
+
+<h3>10º - Conclusão</h3>
+
+<p>O trade-off entre bias e variância é central em Machine Learning.<br>
+Modelos bons equilibram simplicidade e capacidade de generalização,<br>
+evitando tanto underfitting quanto overfitting.</p>
+
+</main>
+
+</body>
+</html>
+
