@@ -3,12 +3,12 @@
     "title": "Regressão Linear Simples",
     "date": "2026-02-10",
     "summary": "Exemplo Prático para Problema de Regressão Linear Simples.",
-    "url": "articles/ml/02-regression/01-simple-linear.html"
+    "url": "blog/ml/02_regression/01_simple_linear.html"
   },
   {
     "title": "Arvore de Decisão",
     "date": "2026-03-19",
     "summary": "Exemplo Prático para Problema com Arvore de Decisão.",
-    "url": "articles/ml/03-tree/01-decision-tree.html"
+    "url": "blog/ml/03_tree/01_decision_tree.html"
   }
 ]
