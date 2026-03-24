@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link rel="stylesheet" href="../../../assets/css/style.css">
+
+<title>Risco Empírico</title>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+<main>
+
+<h2>Risco Empírico</h2>
+
+<h3>1º - Objetivo: Medir o Erro do Modelo</h3>
+
+<p>Em Machine Learning, queremos treinar modelos que façam boas previsões.</p>
+
+<p>Mas surge uma pergunta fundamental:</p>
+
+<p><strong>Como saber se um modelo está indo bem?</strong></p>
+
+<p>Para isso, precisamos medir o erro entre o que o modelo prevê e o valor real.</p>
+
+<h3>2º - Ideia Intuitiva</h3>
+
+<p>Suponha que temos os seguintes dados:</p>
+
+<table>
+<thead>
+<tr>
+<th>Valor Real (y)</th>
+<th>Previsão (\(\hat{y}\))</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>3</td><td>2.5</td></tr>
+<tr><td>5</td><td>5.5</td></tr>
+<tr><td>2</td><td>2</td></tr>
+<tr><td>7</td><td>6</td></tr>
+</tbody>
+</table>
+
+<p>Podemos calcular o erro de cada previsão.</p>
+
+<h3>3º - Função de Perda (Loss Function)</h3>
+
+<p>Uma forma comum de medir erro é o <strong>Erro Quadrático</strong>:</p>
+
+<p class="equation">\(
+L(y, \hat{y}) = (y - \hat{y})^2
+\)</p>
+
+<p>Calculando para cada ponto:</p>
+
+<ul>
+<li>(3 - 2.5)² = 0.25</li>
+<li>(5 - 5.5)² = 0.25</li>
+<li>(2 - 2)² = 0</li>
+<li>(7 - 6)² = 1</li>
+</ul>
+
+<h3>4º - Definição de Risco Empírico</h3>
+
+<p>O <strong>Risco Empírico</strong> é simplesmente a média dos erros no conjunto de dados:</p>
+
+<p class="equation">\(
+R_{emp} = \frac{1}{n} \sum_{i=1}^{n} L(y_i, \hat{y}_i)
+\)</p>
+
+<p>No nosso exemplo:</p>
+
+<p class="equation">\(
+R_{emp} = \frac{0.25 + 0.25 + 0 + 1}{4} = 0.375
+\)</p>
+
+<h3>5º - Interpretação</h3>
+
+<ul>
+<li>O risco empírico mede o desempenho do modelo nos dados observados.</li>
+<li>Quanto menor, melhor o modelo se ajusta aos dados.</li>
+<li>Ele depende diretamente da função de perda escolhida.</li>
+</ul>
+
+<h3>6º - O Objetivo do Aprendizado</h3>
+
+<p>Treinar um modelo é, essencialmente, minimizar o risco empírico:</p>
+
+<p class="equation">\(
+\min_{\theta} R_{emp}(\theta)
+\)</p>
+
+<p>Onde \(\theta\) representa os parâmetros do modelo.</p>
+
+<h3>7º - Limitação Importante</h3>
+
+<p>Minimizar o risco empírico não garante bom desempenho em novos dados.</p>
+
+<p>Isso pode levar ao problema de <strong>overfitting</strong>, onde o modelo "decora" os dados.</p>
+
+<h3>8º - Conexão com Generalização</h3>
+
+<p>O ideal seria minimizar o <strong>Risco Verdadeiro</strong>, que considera todos os dados possíveis:</p>
+
+<p class="equation">\(
+R_{true} = \mathbb{E}[L(y, \hat{y})]
+\)</p>
+
+<p>Como não temos acesso a todos os dados do mundo, usamos o risco empírico como aproximação.</p>
+
+<h3>9º - Conceitos Importantes</h3>
+
+<ul>
+<li><strong>Loss Function:</strong> mede erro individual</li>
+<li><strong>Risco Empírico:</strong> média dos erros no dataset</li>
+<li><strong>Minimização:</strong> objetivo do treinamento</li>
+<li><strong>Overfitting:</strong> bom no treino, ruim na prática</li>
+</ul>
+
+<h3>10º - Conclusão</h3>
+
+<p>O risco empírico é a base matemática do aprendizado em Machine Learning.<br>
+Ele conecta dados, erro e otimização em um único conceito,<br>
+servindo como ponto de partida para praticamente todos os algoritmos.</p>
+
+</main>
+
+</body>
+</html>
