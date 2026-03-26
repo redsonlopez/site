@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../../../assets/css/style.css">
+
+<title>Gradient Boosting</title>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+<main>
+
+<h2>Gradient Boosting</h2>
+
+<h3>1º - O Problema: Prever Nota</h3>
+
+<p>Considere o mesmo cenário de regressão:</p>
+
+<table>
+<thead>
+<tr>
+<th>Horas (\(x\))</th>
+<th>Nota (\(y\))</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>2</td></tr>
+<tr><td>2</td><td>3</td></tr>
+<tr><td>3</td><td>5</td></tr>
+<tr><td>4</td><td>4</td></tr>
+<tr><td>5</td><td>6</td></tr>
+</tbody>
+</table>
+
+<p>Nosso objetivo é prever a nota com base nas horas de estudo.</p>
+
+<h3>2º - Ideia do Gradient Boosting</h3>
+
+<p>
+Em vez de criar várias árvores independentes (como no Random Forest),
+o Gradient Boosting constrói modelos <strong>sequencialmente</strong>.
+</p>
+
+<ul>
+<li>Cada novo modelo corrige os erros do anterior</li>
+<li>O foco está nos <strong>resíduos</strong> (erros)</li>
+</ul>
+
+<h3>3º - Modelo Inicial</h3>
+
+<p>Começamos com uma previsão simples: a média dos valores.</p>
+
+<p class="equation">\(
+\bar{y} = 4
+\)</p>
+
+<p>Primeira previsão para todos os pontos:</p>
+
+<p class="equation">\(
+\hat{y}_i = 4
+\)</p>
+
+<h3>4º - Cálculo dos Erros (Resíduos)</h3>
+
+<table>
+<thead>
+<tr>
+<th>\(x\)</th>
+<th>\(y\)</th>
+<th>\(\hat{y}\)</th>
+<th>Erro (\(y - \hat{y}\))</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>2</td><td>4</td><td>-2</td></tr>
+<tr><td>2</td><td>3</td><td>4</td><td>-1</td></tr>
+<tr><td>3</td><td>5</td><td>4</td><td>1</td></tr>
+<tr><td>4</td><td>4</td><td>4</td><td>0</td></tr>
+<tr><td>5</td><td>6</td><td>4</td><td>2</td></tr>
+</tbody>
+</table>
+
+<h3>5º - Treinando uma Árvore nos Erros</h3>
+
+<p>
+Agora treinamos uma árvore para prever os erros (resíduos).
+</p>
+
+<pre>
+        [Horas ≥ 3]
+          /      \
+       Não        Sim
+      /            \
+   -1.5          +1.0
+</pre>
+
+<p>
+Esses valores representam a <strong>média dos resíduos</strong> em cada grupo.<br>
+Ou seja, a árvore aprende qual é o erro médio que precisa ser corrigido em cada região.
+</p>
+
+<h3>6º - Atualizando as Previsões</h3>
+
+<p>Nova previsão:</p>
+
+<p class="equation">\(
+\hat{y}_{novo} = \hat{y}_{antigo} + \alpha \cdot \text{árvore}
+\)</p>
+
+<p>
+O parâmetro \(\alpha\) é chamado de <strong>Learning Rate</strong> (ou Shrinkage).
+</p>
+
+<ul>
+<li>Controla o quanto cada árvore influencia o modelo final</li>
+<li>Valores menores tornam o aprendizado mais gradual</li>
+<li>Ajuda a evitar overfitting</li>
+</ul>
+
+<p>Considerando \(\alpha = 0.5\):</p>
+
+<ul>
+<li>Para \(x < 3\): \(4 + 0.5(-1.5) = 3.25\)</li>
+<li>Para \(x ≥ 3\): \(4 + 0.5(1.0) = 4.5\)</li>
+</ul>
+
+<h3>7º - Repetindo o Processo</h3>
+
+<p>
+Calculamos novos resíduos e treinamos outra árvore.
+</p>
+
+<p>
+A cada iteração, os resíduos tendem a ficar mais próximos de zero,<br>
+indicando que o modelo está melhorando suas previsões.
+</p>
+
+<pre>
+Modelo 1 → média
+Modelo 2 → corrige erros
+Modelo 3 → corrige erros restantes
+...
+</pre>
+
+<h3>8º - Intuição Final</h3>
+
+<ul>
+<li>Os modelos são construídos em sequência</li>
+<li>Cada um aprende com os erros anteriores</li>
+<li>O resultado final é a soma de vários modelos fracos</li>
+</ul>
+
+<h3>9º - Diferença para Random Forest</h3>
+
+<ul>
+<li><strong>Random Forest:</strong> árvores independentes (paralelo)</li>
+<li><strong>Gradient Boosting:</strong> árvores sequenciais (dependentes)</li>
+</ul>
+
+<h3>10º - Conclusão</h3>
+
+<p>
+Gradient Boosting transforma modelos simples em um modelo forte
+ao focar iterativamente nos erros.
+</p>
+
+<p>
+Essa ideia é a base de algoritmos modernos como XGBoost e LightGBM.
+</p>
+
+</main>
+
+</body>
+</html>
+

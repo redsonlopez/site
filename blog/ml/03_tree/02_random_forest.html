@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../../../assets/css/style.css">
+
+<title>Random Forest</title>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+<main>
+
+<h2>Random Forest</h2>
+
+<h3>1º - Limitação de uma Única Árvore</h3>
+
+<p>Considere o mesmo cenário de aprovação:</p>
+
+<table>
+<thead>
+<tr>
+<th>Horas de Estudo</th>
+<th>Faltas</th>
+<th>Aprovado?</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>2</td><td>5</td><td>Não</td></tr>
+<tr><td>3</td><td>2</td><td>Sim</td></tr>
+<tr><td>1</td><td>6</td><td>Não</td></tr>
+<tr><td>4</td><td>1</td><td>Sim</td></tr>
+<tr><td>2</td><td>4</td><td>Não</td></tr>
+</tbody>
+</table>
+
+<p>No post anterior, uma única árvore encontrou uma regra perfeita.</p>
+
+<p>Mas na prática, pequenas mudanças nos dados podem gerar árvores completamente diferentes.</p>
+
+<ul>
+<li>A árvore é muito sensível aos dados</li>
+<li>Isso é chamado de <strong>alta variância</strong></li>
+</ul>
+
+<h3>2º - Ideia do Random Forest</h3>
+
+<p>Em vez de confiar em uma única árvore, usamos várias árvores ao mesmo tempo.</p>
+
+<p>Cada árvore aprende uma regra um pouco diferente.</p>
+
+<p>A decisão final é feita por <strong>votação</strong> (ou média).</p>
+
+<h3>3º - O Segredo: Criar Árvores Diferentes</h3>
+
+<p>O segredo do Random Forest é garantir que as árvores sejam diferentes entre si.</p>
+
+<p>Isso é feito de duas formas:</p>
+
+<ul>
+<li><strong>Amostragem de Linhas (Bootstrap):</strong> cada árvore treina com um subconjunto diferente dos dados</li>
+<li><strong>Amostragem de Colunas (Feature Selection):</strong> em cada divisão, a árvore considera apenas algumas variáveis</li>
+</ul>
+
+<p>Isso força as árvores a analisarem o problema por ângulos diferentes.</p>
+
+<h3>4º - Exemplo de Bootstrap</h3>
+
+<p>Geramos novos conjuntos de dados com reposição:</p>
+
+<p><strong>Conjunto 1</strong></p>
+<table>
+<tr><td>2</td><td>5</td><td>Não</td></tr>
+<tr><td>3</td><td>2</td><td>Sim</td></tr>
+<tr><td>3</td><td>2</td><td>Sim</td></tr>
+<tr><td>1</td><td>6</td><td>Não</td></tr>
+<tr><td>4</td><td>1</td><td>Sim</td></tr>
+</table>
+
+<p><strong>Conjunto 2</strong></p>
+<table>
+<tr><td>2</td><td>4</td><td>Não</td></tr>
+<tr><td>2</td><td>5</td><td>Não</td></tr>
+<tr><td>4</td><td>1</td><td>Sim</td></tr>
+<tr><td>1</td><td>6</td><td>Não</td></tr>
+<tr><td>2</td><td>5</td><td>Não</td></tr>
+</table>
+
+<p>Cada conjunto gera uma árvore diferente.</p>
+
+<h3>5º - Várias Árvores, Diferentes Decisões</h3>
+
+<pre>
+Árvore 1 → Aprovado
+Árvore 2 → Reprovado
+Árvore 3 → Aprovado
+</pre>
+
+<h3>6º - Predição Final</h3>
+
+<p>A forma de combinar as árvores depende do tipo de problema:</p>
+
+<h4>Classificação (Votação)</h4>
+
+<p>O resultado é a classe mais frequente (moda):</p>
+
+<p class="equation">
+\(
+Resultado = \text{moda} \{ T_1, T_2, ..., T_n \}
+\)
+</p>
+
+<h4>Regressão (Valores Numéricos)</h4>
+
+<p>O resultado é a média das previsões:</p>
+
+<p class="equation">
+\(
+Resultado = \frac{T_1 + T_2 + ... + T_n}{n}
+\)
+</p>
+
+<h3>7º - Intuição Visual</h3>
+
+<pre>
+        Dados
+          ↓
+   ┌───────────────┐
+   │ Amostragens   │
+   └───────────────┘
+     ↓     ↓     ↓
+  Árvore Árvore Árvore
+    1       2       3
+     ↓     ↓     ↓
+   Sim     Não    Sim
+        ↓
+     Votação
+        ↓
+     Resultado
+</pre>
+
+<h3>8º - Por que isso funciona?</h3>
+
+<ul>
+<li>Uma árvore pode errar</li>
+<li>Várias árvores tendem a corrigir os erros umas das outras</li>
+<li>O modelo fica mais estável</li>
+<li>Reduz overfitting</li>
+</ul>
+
+<h3>9º - Conceitos Importantes</h3>
+
+<ul>
+<li><strong>Bootstrap:</strong> amostragem com reposição</li>
+<li><strong>Feature Selection:</strong> uso de subconjunto de variáveis</li>
+<li><strong>Ensemble:</strong> combinação de modelos</li>
+<li><strong>Redução de variância:</strong> maior robustez</li>
+</ul>
+
+<h3>10º - Conclusão</h3>
+
+<p>
+Random Forest melhora árvores de decisão ao combinar várias delas e forçar diversidade entre elas.
+</p>
+
+<p>
+Isso torna o modelo mais robusto, reduz a variância e melhora a capacidade de generalização.
+</p>
+
+</main>
+
+</body>
+</html>
+
