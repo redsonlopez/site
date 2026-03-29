@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../../../../../assets/css/style.css">
+
+<title>Perceptron</title>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+
+<main>
+
+<h2>Perceptron</h2>
+
+<h3>1º - O Problema: Classificação Linear</h3>
+
+<p>Considere um problema simples de classificação:</p>
+
+<table>
+<thead>
+<tr>
+<th>\(x_1\)</th>
+<th>\(x_2\)</th>
+<th>\(y\)</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>2</td><td>1</td><td>0</td></tr>
+<tr><td>3</td><td>2</td><td>1</td></tr>
+<tr><td>4</td><td>3</td><td>1</td></tr>
+</tbody>
+</table>
+
+<p>Queremos separar os dados em duas classes:</p>
+
+<ul>
+<li>0 → Classe negativa</li>
+<li>1 → Classe positiva</li>
+</ul>
+
+<h3>2º - Ideia do Perceptron</h3>
+
+<p>O perceptron é um modelo que aprende uma <strong>fronteira de decisão linear</strong> (uma reta que divide os dados).</p>
+
+<p>Para decidir a qual classe um dado pertence, ele calcula uma <strong>combinação linear</strong> das entradas:</p>
+
+<p class="equation">\(
+z = w_1 x_1 + w_2 x_2 + b
+\)</p>
+
+<p>Onde cada componente tem um papel fundamental:</p>
+
+<ul>
+    <li><strong>\(x_1, x_2\) (Entradas):</strong> São as características do seu dado (ex: altura e peso).</li>
+    <li><strong>\(w_1, w_2\) (Pesos/Weights):</strong> Representam a <strong>importância</strong> de cada entrada. Se \(w_1\) for maior que \(w_2\), a entrada \(x_1\) tem mais influência no resultado final.</li>
+    <li><strong>\(b\) (Bias/Viés):</strong> É um ajuste fixo que permite deslocar a fronteira de decisão. Sem ele, a reta de classificação seria obrigada a passar sempre pela origem (0,0).</li>
+    <li><strong>\(z\) (Soma Ponderada):</strong> É o resultado bruto dessa conta. É esse valor que será enviado para a função de ativação para gerar a previsão final.</li>
+</ul>
+
+<h3>3º - Função de Ativação</h3>
+
+<p>O perceptron usa uma função degrau:</p>
+
+<p class="equation">\(
+\hat{y} =
+\begin{cases}
+1 & \text{se } z \geq 0 \\
+0 & \text{se } z < 0
+\end{cases}
+\)</p>
+
+<p>Ou seja, ele transforma o valor contínuo em uma decisão binária.</p>
+
+<h3>4º - Interpretação Geométrica</h3>
+
+<p>A equação:</p>
+
+<p class="equation">\(
+w_1 x_1 + w_2 x_2 + b = 0
+\)</p>
+
+<p>define uma reta (em 2D) que separa os dados.</p>
+
+<ul>
+<li>Um lado da reta → classe 1</li>
+<li>Outro lado → classe 0</li>
+</ul>
+
+<h3>5º - Regra de Atualização</h3>
+
+<p>O perceptron aprende ajustando os pesos e bias quando erra.</p>
+
+<p>Regra de atualização:</p>
+
+<p class="equation">\(
+w_{novo} = w_{antigo} + \eta (y - \hat{y}) x
+\)</p>
+
+<p class="equation">\(
+b_{novo} = b_{antigo} + \eta (y - \hat{y})
+\)</p>
+
+<p>Onde:</p>
+
+<ul>
+    <li>\(y\) é o valor real e \(\hat{y}\) é a previsão.</li>
+    <li>\(x\) é a entrada que causou o erro.</li>
+    <li><strong>\(\eta\) (Eta) é a Taxa de Aprendizado (Learning Rate):</strong> É um número pequeno (ex: 0.1 ou 0.01) que definimos para o "tamanho do passo" no ajuste.</li>
+</ul>
+
+<h4>O papel da Taxa de Aprendizado (\(\eta\))</h4>
+
+<p>Imagine que o Perceptron está tentando encontrar o lugar certo para a reta de decisão:</p>
+
+<ul>
+    <li><strong>Se \(\eta\) for muito alto:</strong> O modelo faz ajustes agressivos. Ele pode "pular" a posição ideal e nunca conseguir estabilizar (fica oscilando de um lado para o outro).</li>
+    <li><strong>Se \(\eta\) for muito baixo:</strong> O ajuste é minúsculo. O modelo precisará de muito mais tempo e repetições para aprender a separar os dados.</li>
+</ul>
+
+<h4>Intuição do termo \( (y - \hat{y}) \)</h4>
+
+<ul>
+    <li>Se o modelo <strong>acertou</strong>, então \(y - \hat{y} = 0\) → o ajuste é multiplicado por zero (nada muda).</li>
+    <li>Se o modelo <strong>errou</strong>, esse termo define a direção do ajuste (para cima ou para baixo), enquanto o \(\eta\) define a intensidade desse movimento.</li>
+</ul>
+
+<p>Isso mostra que o Perceptron é um modelo <strong>reativo ao erro</strong>: ele só aprende quando erra, e a taxa de aprendizado controla o quão drástica é essa reação.</p>
+
+<h3>6º - Exemplo Numérico</h3>
+
+<p>Para entender o ajuste na prática, vamos supor os seguintes valores iniciais:</p>
+
+<ul>
+    <li>Pesos iniciais: \(w = (1, 1)\)</li>
+    <li>Bias inicial: \(b = -2\)</li>
+    <li>Taxa de aprendizado: \(\eta = 1\) (usada alta aqui para facilitar a visualização)</li>
+</ul>
+
+<p>Considere a entrada \(x = (2, 1)\), cujo valor real esperado é \(y = 0\).</p>
+
+<h4>Passo 1: Calcular a Previsão</h4>
+<p class="equation">
+    \(z = (w_1 \cdot x_1) + (w_2 \cdot x_2) + b\) <br>
+    \(z = (1 \cdot 2) + (1 \cdot 1) - 2 = 1\)
+</p>
+
+<p>Como \(z \geq 0\), a previsão da função de ativação é <strong>\(\hat{y} = 1\)</strong>. <br>
+Comparando com o valor real (\(y = 0\)), o modelo <strong>errou</strong>. Precisamos atualizar os parâmetros.</p>
+
+<h4>Passo 2: Atualização dos Pesos e Bias</h4>
+<p>O erro é calculado como \((y - \hat{y}) = (0 - 1) = -1\).</p>
+
+<p><strong>Atualizando os Pesos:</strong></p>
+<p class="equation">
+    \(w_{novo} = w_{antigo} + \eta (y - \hat{y}) x\) <br>
+    \(w_{novo} = (1, 1) + 1 \cdot (-1) \cdot (2, 1)\) <br>
+    \(w_{novo} = (1, 1) + (-2, -1) = (-1, 0)\)
+</p>
+
+<p><strong>Atualizando o Bias:</strong></p>
+<p class="equation">
+    \(b_{novo} = b_{antigo} + \eta (y - \hat{y})\) <br>
+    \(b_{novo} = -2 + 1 \cdot (-1) = -3\)
+</p>
+
+<p>Após esse ajuste, com os novos valores \(w = (-1, 0)\) e \(b = -3\), o modelo agora daria um resultado negativo para a mesma entrada, corrigindo o erro anterior.</p>
+
+<h3>7º - De onde vêm os valores de \(w\) e \(b\) iniciais?</h3>
+
+<ul>
+<li><strong>Inicialização com Zero:</strong> No Perceptron simples, é comum começar com todos os pesos e bias valendo 0. O modelo aprenderá a partir do primeiro erro.</li>
+<li><strong>Inicialização Aleatória:</strong> Atribuímos valores pequenos e aleatórios. Isso é essencial em redes neurais maiores para evitar que todos os neurônios aprendam a mesma coisa (quebra de simetria).</li>
+</ul>
+
+<p>Independentemente do início, a regra de atualização "empurra" esses valores até encontrar a reta ideal.</p>
+
+<h3>8º - Visualização da Ideia</h3>
+
+<pre>
+Classe 1  |        x
+          |      x
+----------|--------------
+          |   o
+Classe 0  | o     o
+          |
+</pre>
+
+<p>Note que a reta começa em uma posição arbitrária (baseada nos pesos iniciais) e vai sendo ajustada conforme os erros ocorrem.</p>
+
+<p>O perceptron ajusta a reta até separar corretamente os pontos.</p>
+
+<h3>9º - Limitação</h3>
+
+<p>O perceptron só funciona quando os dados são <strong>linearmente separáveis</strong>.</p>
+
+<h3>10º - Conclusão</h3>
+
+<ul>
+<li>É um dos primeiros modelos de redes neurais</li>
+<li>Realiza classificação binária</li>
+<li>Aprende uma fronteira linear</li>
+<li>Atualiza pesos apenas quando erra</li>
+<li>Base para redes neurais modernas</li>
+</ul>
+
+</main>
+
+</body>
+</html>
+

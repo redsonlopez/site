@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      background-color: #111;
+      color: #eee;
+    }
+
+    /* Sidebar */
+    nav {
+      width: 250px;
+      height: 100vh;
+      background-color: #1a1a1a;
+      padding: 20px;
+      box-sizing: border-box;
+      position: fixed;
+      overflow-y: auto;
+    }
+
+    nav h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #ccc;
+    }
+
+    nav a {
+      display: block;
+      color: #aaa;
+      text-decoration: none;
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* Main content */
+    main {
+      margin-left: 250px;
+      padding: 40px;
+      max-width: 800px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #ddd;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    code {
+      background: #222;
+      padding: 3px 6px;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: #222;
+      padding: 15px;
+      overflow-x: auto;
+      border-radius: 6px;
+    }
+
+    /* Navigation footer */
+    .nav-footer {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .nav-footer a {
+      text-decoration: none;
+      color: #888;
+    }
+
+    .nav-footer a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <nav>
+    <h2>Fundamentos</h2>
+    <a href="./01_fundamentals/01_empirical_risk.html">Risco Empírico</a>
+    <a href="./01_fundamentals/02_bias_variance.html">Bias vs Variance</a>
+
+    <h2>Modelos</h2>
+    <a href="./02_models/01_regression/01_simple_linear.html">Regressão Linear</a>
+    <a href="./02_models/02_tree_based/01_decision_tree.html">Árvore de Decisão</a>
+    <a href="./02_models/03_neighbors/01_knn_classification.html">Visinhos</a>
+    <a href="./02_models/04_svm/01_linear_svm.html">SVM</a>
+    <a href="./02_models/05_neural_networks/01_perceptron.html">Redes Neurais</a>
+    <a href="./02_models/06_unsupervised/01_kmeans.html">Não Supervisionado</a>
+
+    <h2>Técnicas</h2>
+    <a href="./03_techniques/01_optimization/01_gradient_descent.html">Gradiente Descendente</a>
+    <a href="./03_techniques/02_ensemble_methods/01_bagging.html">Aprendizado em Conjunto</a>
+    <a href="./03_techniques/03_feature_engineering/01_scaling_normalization.html">Engenharia de Recursos</a>
+  </nav>
+
+  <!-- Main -->
+  <main>
+
+    <h1>{{TITLE}}</h1>
+    <p><em>{{DESCRIPTION}}</em></p>
+
+    <h2>1. Intuição</h2>
+    <p>
+      Explique a ideia principal de forma simples e visual.
+    </p>
+
+    <h2>2. Exemplo</h2>
+    <p>
+      Mostre um exemplo prático ou intuitivo.
+    </p>
+
+    <h2>3. Formulação</h2>
+    <p>
+      Introduza a matemática de forma leve.
+    </p>
+
+    <pre><code>
+y = β0 + β1x
+    </code></pre>
+
+    <h2>4. Pontos importantes</h2>
+    <ul>
+      <li>Vantagem 1</li>
+      <li>Limitação 1</li>
+    </ul>
+
+    <h2>5. Conexões</h2>
+    <p>
+      Relacione com outros tópicos do blog.
+    </p>
+
+    <!-- Footer navigation -->
+    <div class="nav-footer">
+      <a href="{{PREV_LINK}}">← Anterior</a>
+      <a href="{{NEXT_LINK}}">Próximo →</a>
+    </div>
+
+  </main>
+
+</body>
+</html>
+
