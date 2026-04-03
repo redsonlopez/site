@@ -5,7 +5,7 @@ class SiteNavbar extends HTMLElement {
         <ul class="simple-ul">
           <li><a href="./" title="Click para visualizar meu portfólio">Portfolio</a></li>
           <li><a href="./stacks.html" title="Click para visualizar minhas stacks">Stacks</a></li>
-          <li><a href="./blog.html" title="Click para visualizar meu blog">Blog</a></li>
+          <!--<li><a href="./blog.html" title="Click para visualizar meu blog">Blog</a></li>-->
         </ul>
       </nav>
     `;
